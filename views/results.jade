@@ -1,0 +1,23 @@
+html(ng-app='app')
+head
+	script(src='javascripts/angular/angular.js')
+	script(src='javascripts/core.js')
+	script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js')
+	script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js')
+	script(src='http://angular-ui.github.io/ui-router/release/angular-ui-router.min.js')
+	link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+	link(rel='stylesheet', href='/stylesheets/animate.css')
+	link(rel='stylesheet', href='/stylesheets/style.css')
+	body(ng-controller='retrieveController' class="animated fadeIn")
+	div
+		ul
+			div(id='ng-view')
+				div(ng-repeat='data in info.display')
+					p Level: {{data.summonerLevel}}
+					p Champion: {{data.championId}}
+					p Icon: 
+						img(src='http://ddragon.leagueoflegends.com/cdn/5.2.1/img/profileicon/{{data.profileIconId}}.png')
+						{{info.matchInfo}}
+						ul
+						div(ng-repeat='item in jsonData.participants')
+							p Name: {{item.summonerName}} Champion: {{item.championId}}

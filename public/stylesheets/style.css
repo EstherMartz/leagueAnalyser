@@ -1,0 +1,28 @@
+body {
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  background-color: #000;
+  color: #fff;
+  background: url("/images/binding_dark.png");
+}
+a {
+  color: #00b7ff;
+}
+#slider {
+  margin: 0 auto;
+  margin-top: 12%;
+  height: 400px;
+  width: auto;
+  background: url("/images/slider.jpg");
+  -webkit-box-shadow: 1px 3px 10px 3px #111;
+  box-shadow: 1px 3px 10px 3px #111;
+}
+#sliderwrap {
+  padding-top: 50px;
+  margin: 0 auto;
+  width: 400px;
+}
+h1 {
+  color: #fff;
+}
