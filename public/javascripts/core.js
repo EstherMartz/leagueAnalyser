@@ -96,28 +96,3 @@ app.controller("retrieveController",['$scope','dataService','$http',function($sc
 					console.log("Error: " + status);
 				})
 	}]);
-
-// $http.get('/api/summonerData')
-// 				.success(function(data, status){
-// 					console.log("Success");
-// 					$scope.info.display = data;
-// 					$http.get('/api/MatchInfo')
-// 					.success(function(data, status){
-// 							$scope.jsonData = data;
-// 							for (item in $scope.jsonData.participants){
-// 								ids[item] = $scope.jsonData.participants[item].championId;
-// 							}
-// 					$http.post('/api/champIds', ids)
-// 						.success(function(data,status){
-// 						console.log("hecho");
-// 									})
-
-// 						console.log(ids);
-// 						$http.get('/api/champInfo')
-// 						}).error(function(data,status){
-// 							console.log("Error: " + status);
-// 						})			
-// 				}).error(function(data,status){
-// 					console.log("Error: " + status);
-// 				})
-// 	}]);
