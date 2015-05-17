@@ -49,6 +49,7 @@ var summonerId = "";
 var currentGame;
 var champID = "";
 var champsInfo;
+var chop = [];
 
 var getSummonerName = app.post('/api/getSummonerName', function (req, res){
 	summonerName = req.body.summonerName;
@@ -63,10 +64,15 @@ var setChampsID = app.post('/api/champIds', function (req, res){
 });
 
   var getChamps = app.get('/api/champInfo', function(req, res){
-        request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[0]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
-        if(!error)
-          res.json(response);
+    for(champion in champID){
+        request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[champion]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
+           if(!error){
+            chop[champion] = body;
+          }
         })
+      }
+      console.log(chop);
+      res.json(chop);
     });
 
 
