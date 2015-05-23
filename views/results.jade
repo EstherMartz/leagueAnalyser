@@ -20,4 +20,5 @@ head
 						{{info.matchInfo}}
 						ul
 						div(ng-repeat='item in jsonData.participants')
-							p Name: {{item.summonerName}} Champion: {{item.championId}}
+							p Name: {{item.summonerName}} Champion: 
+							img(src='/images/champion_portraits/{{item.championId}}_Web_0.jpg')

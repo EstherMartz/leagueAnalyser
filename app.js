@@ -64,14 +64,24 @@ var setChampsID = app.post('/api/champIds', function (req, res){
 });
 
   var getChamps = app.get('/api/champInfo', function(req, res){
-    for(champion in champID){
-        request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[champion]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
+        request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[0]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
            if(!error){
-            chop[champion] = body;
+            chop[0] = body;
+            console.log(chop[0]);
+             request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[1]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
+              chop[1] = body;
+              console.log(chop[1]);
+              request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[2]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
+                chop[2] = body;
+                console.log(chop[2]);
+                request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[3]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
+                  chop[3] = body;
+                  console.log(chop[3]);
+                })
+                })
+              })
           }
         })
-      }
-      console.log(chop);
       res.json(chop);
     });
 
