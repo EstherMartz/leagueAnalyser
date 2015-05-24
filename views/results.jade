@@ -1,4 +1,4 @@
-html(ng-app='app')
+html(ng-app='app').
 head
 	script(src='javascripts/angular/angular.js')
 	script(src='javascripts/core.js')
@@ -9,16 +9,21 @@ head
 	link(rel='stylesheet', href='/stylesheets/animate.css')
 	link(rel='stylesheet', href='/stylesheets/style.css')
 	body(ng-controller='retrieveController' class="animated fadeIn")
-	div
-		ul
-			div(id='ng-view')
-				div(ng-repeat='data in info.display')
-					p Level: {{data.summonerLevel}}
-					p Champion: {{data.championId}}
-					p Icon: 
-						img(src='http://ddragon.leagueoflegends.com/cdn/5.2.1/img/profileicon/{{data.profileIconId}}.png')
-						{{info.matchInfo}}
-						ul
-						div(ng-repeat='item in jsonData.participants')
-							p Name: {{item.summonerName}} Champion: 
-							img(src='/images/champion_portraits/{{item.championId}}_Web_0.jpg')
+	<div class="container">
+	<div class="row">
+	<div class="col-md-12 container">
+	<h3>Resultados del análisis</h3>
+	<div class="row player_container">
+	<div class="col-md-6 graybg blueTeam shadow">
+	<div ng-repeat='item in jsonData.participants | limitTo:5'>
+	<div class="player paddingTop"><img src="/images/profile_icon/profileIcon{{item.profileIconId}}.jpg" width="50px"/><img src="/images/champion_portraits/{{item.championId}}_Web_0.jpg" width="50px" style="margin-right:15px"/><a href="http://www.lolking.net/summoner/euw/{{item.summonerId}}"/>{{item.summonerName}}</a></div>
+	</div>
+	</div>
+	<div class="col-md-6 graybg purpleTeam shadow">
+	<div ng-repeat='item in jsonData.participants | limitTo:-5'>
+	<div class="player paddingTop" style=" border-bottom:10x solid #d6d6d6; clear:both; float:right; text-align:right;"><a href="http://www.lolking.net/summoner/euw/{{item.summonerId}}"/>{{item.summonerName}}</a><img src="/images/champion_portraits/{{item.championId}}_Web_0.jpg" width="50px" style="margin-left:15px"/></div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>

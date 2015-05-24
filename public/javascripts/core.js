@@ -64,6 +64,8 @@ app.controller("retrieveController",['$scope','dataService','$http',function($sc
 	$scope.info = {
 		display: '',
 		jsonData: '',
+		blue: '',
+		purple:'',
 	};
 
 	var ids = [];
