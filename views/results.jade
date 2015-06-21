@@ -8,23 +8,22 @@ head
 	link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
 	link(rel='stylesheet', href='/stylesheets/animate.css')
 	link(rel='stylesheet', href='/stylesheets/style.css')
-	body(ng-controller='retrieveController' class="animated fadeIn")
-	<div class="container">
-	<div class="row">
-	<div class="col-md-12 container">
-	<h3>Resultados del análisis</h3>
+	body(ng-controller='retrieveController')
+	<div class="container animated fadeIn">
+	<div class="row" style="margin-top:70px;">
+	<div class="col-md-12 container animated fadeIn">
+	<h4 style="float:left">Equipo azul</h4><h4 style="text-align:right">Equipo morado</h4>
 	<div class="row player_container">
-	<div class="col-md-6 graybg blueTeam shadow">
+	<div class="col-md-6 animated fadeIn graybg blueTeam shadow">
 	<div ng-repeat='item in jsonData.participants | limitTo:5'>
 	<div class="player paddingTop"><img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/profileicon/{{item.profileIconId}}.png" width="50px" style="margin-right:5px"/><img src="/images/champion_portraits/{{item.championId}}_Web_0.jpg" width="50px" style="margin-right:15px"/><a href="http://www.lolking.net/summoner/euw/{{item.summonerId}}"/>{{item.summonerName}}</a></div>
 	</div>
 	</div>
-	<div class="col-md-6 graybg purpleTeam shadow">
+	<div class="col-md-6 animated fadeIn graybg purpleTeam shadow">
 	<div ng-repeat='item in jsonData.participants | limitTo:-5'>
 	<div class="player paddingTop" style=" border-bottom:10x solid #d6d6d6; clear:both; float:right; text-align:right;"><a href="http://www.lolking.net/summoner/euw/{{item.summonerId}}"/>{{item.summonerName}}</a><img src="/images/champion_portraits/{{item.championId}}_Web_0.jpg" width="50px" style="margin-left:15px"/><img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/profileicon/{{item.profileIconId}}.png" width="50px" style="margin-left:5px"/></div>
 	</div>
 	</div>
-
 	</div>
 	</div>
 	</div>

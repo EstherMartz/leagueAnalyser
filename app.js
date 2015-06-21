@@ -49,7 +49,11 @@ var summonerId = "";
 var currentGame;
 var champID = "";
 var champsInfo;
-var chop = [];
+var UserChampId;
+var ids = [1];
+var chop = '{"champs":[';
+// var chop = '{"champs":[';
+
 
 var getSummonerName = app.post('/api/getSummonerName', function (req, res){
 	summonerName = req.body.summonerName;
@@ -62,29 +66,6 @@ var setChampsID = app.post('/api/champIds', function (req, res){
   console.log(req.body);
   champID = req.body;
 });
-
-  var getChamps = app.get('/api/champInfo', function(req, res){
-        request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[0]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
-           if(!error){
-            chop[0] = body;
-            console.log(chop[0]);
-             request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[1]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
-              chop[1] = body;
-              console.log(chop[1]);
-              request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[2]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
-                chop[2] = body;
-                console.log(chop[2]);
-                request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+champID[3]+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
-                  chop[3] = body;
-                  console.log(chop[3]);
-                })
-                })
-              })
-          }
-        })
-      res.json(chop);
-    });
-
 
 var getSummonerData = app.get('/api/summonerData', function(req,res){
 	LolApi.Summoner.getByName(summonerName, function(err, summoner) {
@@ -100,10 +81,14 @@ var getSummonerData = app.get('/api/summonerData', function(req,res){
 
 var getMatchInfo = app.get('/api/matchInfo', function(req,res){
 	var stringId = String(summonerId);
+  var dataMatch;
+
 	console.log("MATCH INFO " + summonerId);
     LolApi.getCurrentGame(summonerId, 'euw', function(err, data){
     	if(!err){
+        dataMatch = data;
 		    res.json(data);
+        getSummonerChamps(dataMatch);
 			summonerId = "";
     	}
 		else{
@@ -112,6 +97,42 @@ var getMatchInfo = app.get('/api/matchInfo', function(req,res){
     });
 })
 
+
+  function getSummonerChamps(dataMatch){
+    var counter = 0;
+    for(var i = 0; i<10; i++){
+        request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+dataMatch.participants[i].championId+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
+          chop += (body);
+          counter++;
+          })
+  }
+    }
+
+var getChamps = app.get('/api/champInfo', function(req,res){
+                  setTimeout(function() {
+                    res.send(chop + "]}")
+                  }, 1600);
+                  chop = '{"champs":[';
+                });
+
+
+//       if(dataMatch.participants[item].summonerId == summonerId){
+//         UserChampId = dataMatch.participants[item].championId;
+//         console.log(UserChampId + " 1");
+//     }
+//   }
+// }
+
+// var getOwnChampionData = app.get('/api/champInfo', function(req, res){
+  
+//     request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+UserChampId+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
+//        if(!error){
+//           console.log(UserChampId + " 2");
+//           res.json(body);
+//         }
+//         })
+//     });
+
 app.use('/', routes);
 app.use('/api', router);
 app.use('/api/summonerData', router);
@@ -119,7 +140,7 @@ app.use('/api/matchInfo', router);
 app.use('/api/getSummonerName', router);
 app.use('/api/getSummonerId', router);
 app.use('/api/champInfo', router);
-app.use('/api/champIds', router);
+
 
 
 // catch 404 and forward to error handler

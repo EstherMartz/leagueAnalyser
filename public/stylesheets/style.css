@@ -7,9 +7,13 @@ body {
   margin: 0 auto;
   color: 333333;
   height: 100%;
+  background-color: #1b2b2a;
 }
 a {
-  color: #00b7ff;
+  color: #ed9f34;
+}
+h4 {
+  color: #fff;
 }
 #slider {
   margin: 0 auto;

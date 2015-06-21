@@ -60,41 +60,27 @@ app.controller("InfoController",['$scope','$log','$http','$filter','dataService'
 }])
 
 app.controller("retrieveController",['$scope','dataService','$http',function($scope, dataService, $http){
-	
 	$scope.info = {
 		display: '',
 		jsonData: '',
-		blue: '',
-		purple:'',
+		championsData: '',
 	};
 
-	var ids = [];
-	
 	$http.get('/api/summonerData')
 				.success(function(data, status){
 					console.log("Success");
 					$scope.info.display = data;
-					$http.get('/api/MatchInfo')
+					$http.get('/api/matchInfo')
 					.success(function(data, status){
 							$scope.jsonData = data;
-							for (item in $scope.jsonData.participants){
-								ids[item] = $scope.jsonData.participants[item].championId;
-							}
-
-						$http.post('/api/champIds', ids)
-							.success(function(data,status){
-							console.log("hecho");
-										})
-
-							console.log(ids);
-							$http.get('/api/champInfo')
 							})
-							.error(function(data,status){
-								console.log("Error: " + status);
-							})	
 
-				})
-				.error(function(data,status){
-					console.log("Error: " + status);
+					$http({
+						url:'/api/champInfo',
+						method: 'GET',
+						transformResponse: [function(data){
+							$scope.championsData = data;
+						}]
+					})
 				})
 	}]);

@@ -1,5 +1,6 @@
 html(ng-app='app')
 head
+	meta(name='viewport', content='width=device-width, initial-scale=1')
 	script(src='javascripts/angular/angular.js')
 	script(src='javascripts/core.js')
 	script(src='javascripts/angular/angular-route.js')
@@ -15,8 +16,9 @@ head
 		div(id='slider' class='animated fadeIn')
 			div(id='sliderwrap', class='animated fadeIn')
 				h1 leagueAnalyser
-				p(class='white_text') Escribe el nombre del jugador a buscar
-				input(type='text',class='form-control', ng-model='info.summonerNameBox', required='', ng-trim='false')
-				br
-				a(href="/results")
-					button(class='button', ng-click='info.onClick()') Buscar
+				div(class='form-group')
+					p(class='white_text') Escribe el nombre del jugador a buscar
+					input(type='text',class='form-control', ng-model='info.summonerNameBox', required='', ng-trim='false')
+					br
+					a(href="/results")
+						button(class='btn btn-default', href="/results", type="submit", ng-click='info.onClick()') Buscar
