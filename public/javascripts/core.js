@@ -75,12 +75,9 @@ app.controller("retrieveController",['$scope','dataService','$http',function($sc
 							$scope.jsonData = data;
 							})
 
-					$http({
-						url:'/api/champInfo',
-						method: 'GET',
-						transformResponse: [function(data){
-							$scope.championsData = data;
-						}]
-					})
+					$http.get('/api/champInfo')
+					.success(function(data, status){
+							$scope.championsData = eval(data);
+							})
 				})
 	}]);
