@@ -27,7 +27,13 @@ head
 
 	<div class="col-md-6 animated fadeIn graybg">
 	<div class="col-md-12 player paddingTop" ng-repeat="item in championsData | limitTo:5">
+	<p style="font-weight:bold">{{item.name}}</p>
+	<p style="font-weight:bold">Ataque: {{item.info.attack}}, Defensa: {{item.info.defense}}, AP: {{item.info.magic}}, Dificultad: {{item.info.difficulty}}</p>
 	<p>{{item.allytips[0]}}</p>
+	<img width="30px" src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/{{item.recommended[4].blocks[1].items[0].id}}.png"/>
+	<img width="30px" src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/{{item.recommended[4].blocks[1].items[1].id}}.png"/>
+	<img width="30px" src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/{{item.recommended[4].blocks[1].items[2].id}}.png"/>
+
 	</div>
 	</div>
 
@@ -38,7 +44,12 @@ head
 
 	<div class="col-md-6 animated fadeIn graybg">
 	<div class="col-md-12 player paddingTop" ng-repeat="item in championsData | limitTo:-5">
+	<p style="font-weight:bold">{{item.name}}</p>
+	<p style="font-weight:bold">Ataque: {{item.info.attack}}, Defensa: {{item.info.defense}}, AP: {{item.info.magic}}, Dificultad: {{item.info.difficulty}}</p>
 	<p>{{item.enemytips[0]}}</p>
+	<img width="30px" src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/{{item.recommended[4].blocks[1].items[0].id}}.png"/>
+	<img width="30px" src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/{{item.recommended[4].blocks[1].items[1].id}}.png"/>
+	<img width="30px" src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/item/{{item.recommended[4].blocks[1].items[2].id}}.png"/>
 	</div>
 	</div>
 

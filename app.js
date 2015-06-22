@@ -100,7 +100,7 @@ var getMatchInfo = app.get('/api/matchInfo', function(req,res){
   function getSummonerChamps(dataMatch){
     var counter = 0;
     for(var i = 0; i<10; i++){
-        request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+dataMatch.participants[i].championId+'?locale=es_ES&champData=allytips,altimages,enemytips,image,info&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
+        request('https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/'+dataMatch.participants[i].championId+'?locale=es_ES&champData=all&api_key=da1849f4-a901-412f-9e77-123d1731c909', function(error, response, body){
           // chop += body.push+",";
           chop.push(JSON.parse(body));
           counter++;
@@ -111,7 +111,7 @@ var getMatchInfo = app.get('/api/matchInfo', function(req,res){
 var getChamps = app.get('/api/champInfo', function(req,res){
                   setTimeout(function() {
                     res.send(chop);
-                  }, 1600);
+                  }, 2000);
                   chop = [];
                 });
 
